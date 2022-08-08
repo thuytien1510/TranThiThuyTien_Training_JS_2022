@@ -66,7 +66,7 @@ btnReset.addEventListener('click', (e) => {
     id('text_upload').style.display = 'block';
     id('text_upload').style.marginLeft = '40px';
 })
-//add by key delete 
+//reset by key delete 
 document.addEventListener('keydown', function (event) {
     if (event.keyCode == '46') {
         form.reset();
@@ -96,12 +96,13 @@ document.addEventListener('click', e => {
 
 //alway check
 username.addEventListener('keyup', e => {
-    checkName();
+    if (errorMsg[0].textContent != '') {
+        checkName();
+    }
 })
 email.addEventListener('keyup', e => {
     if (errorMsg[1].textContent != '') {
         checkEmail();
-
     }
 })
 phone.addEventListener('keyup', e => {
