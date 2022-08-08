@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@800&family=Roboto:wght@700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.chat {
+    display: flex;
+    gap: 150px;
+    justify-content: center;
+    padding: 20px;
+    border: 2px solid;
+    margin: 0 auto;
+    width: 70%;
+    margin-top: 5%;
+}
+.chat-item {
+    border: 1px solid;
+    width: 40%;
+    height: 600px;
+}
+.chat-item__top {
+    height: 450px;
+    border-bottom: 1px solid;
+    margin-bottom: 20px;
+    overflow-y: scroll;
+
+}
+.chat-item__top .content-left {
+    border-right: 1px solid;
+    width: 50%;
+}
+.chat-item__under{
+    display: flex;
+    justify-content: space-around;
+}
+.option {
+    display: flex;
+}
+.option button {
+    width: 30%;
+    height: 40px;
+    background-color: rgb(247, 242, 156);
+}
+.option button:first-child {
+    font-weight: 700;
+    font-family: 'Roboto';
+
+}
+.option button:nth-child(2) {
+    margin: 0 20px;
+    font-style: italic;
+}
+.text-editor {
+    width: 80%;
+}
+.text-editor .option {
+    margin-bottom: 20px;
+}
+.text-editor .message{
+    width: 100%;
+    border: 1px solid;
+    height: 50px;
+    padding-left: 10px;
+}
+.send button{
+    width: 60px;
+    height: 50px;
+    margin-top: 60px;
+    background-color: aqua;
+}
+button {
+    cursor: pointer;
+}
+.fromM {
+    text-align: left;
+    height: 40px;
+    line-height: 30px;
+    padding: 5px;
+    background-color: aquamarine;
+    margin: 10px;
+    margin-left: 45%;
+    height: fit-content;
+    word-wrap: break-word;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+.fromY {
+    text-align: left;
+    height: 40px;
+    line-height: 30px;
+    padding: 5px;
+    background-color: rgb(236, 142, 203);
+    margin: 5px;
+    margin-right: 40%;
+    height: fit-content;
+    word-wrap: break-word;
+    border-radius: 10px;
+    width: 80%;
+    padding-left: 10px;
+}
+.bold {
+    font-weight: 900;
+}
+.italic {
+    font-style: italic;
+}
+i .fa-solid {
+    font-size: 16px;
+    /* width: 50px; */
+    height: 50px;
+    width: 20%;
+}
+.chatM {
+    display: flex;
+    justify-content: end;
+}
+.chatY {
+    display: flex;
+    justify-content: start;
+}
+img {
+    height: 35px;
+    margin-top: 5px;
+}

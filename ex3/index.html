@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex 3</title>
+    <link rel="stylesheet" href="./asset/style.css">
+</head>
+<body>
+    <div class="chat">
+        <div class="chat-item chat-left">
+            <div class="chat-item__top" id="chat-left__content"></div>
+            <div class="chat-item__under chat-left__text-editor">
+                <div class="text-editor text-editor__left">
+                    <div class="option">
+                        <button class="btn-bold">Đậm</button>
+                        <button class="btn-italic">Nghiêng</button>
+                        <button class="btn-reset">Reset</button>
+                    </div>
+                    <div >
+                        <input type="text" class="message" id="input-left">
+                    </div>
+                </div>
+                <div class="send">
+                    <button id="btn-send-left">SEND</button>
+                </div>
+            </div>
+        </div>
+        <div class="chat-item chat-right">
+            <div class="chat-item__top" id="chat-right__content"></div>
+            <div class="chat-item__under chat-right__text-editor">
+                <div class="text-editor text-editor__right">
+                    <div class="option">
+                        <button class="btn-bold">Đậm</button>
+                        <button class="btn-italic">Nghiêng</button>
+                        <button class="btn-reset">Reset</button>
+                    </div>
+                    <div >
+                        <input type="text" class="message" id="input-right">
+                    </div>
+                </div>
+                <div class="send">
+                    <button id="btn-send-right">SEND</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./asset/main.js"></script>
+</html>

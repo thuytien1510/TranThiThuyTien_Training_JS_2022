@@ -1,0 +1,141 @@
+body {
+    text-align: center;
+    font-size: large;
+}
+
+.data-input {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.form-item {
+    display: flex;
+    justify-content: center;
+}
+
+.form-item input {
+    min-width: 300px;
+    margin: 5px 0;
+    border-radius: 5px;
+    width: 70%;
+    padding: 10px 10px;
+    font-size: large;
+}
+
+.container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+#name {
+    text-transform: capitalize;
+}
+
+.error {
+    font-size: 14px;
+    color: red;
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.form-item label {
+    min-width: 250px;
+    margin: 15px auto;
+}
+
+.btn-submit {
+    margin-top: 3%;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-left: 14%;
+}
+
+.btn-add,
+.btn-reset {
+    padding: 20px 40px;
+    background-color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: aquamarine;
+}
+
+.data {
+    width: 55%;
+    margin: 30px 0 20px 26%;
+    border: 2px solid;
+    padding: 2%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 26%;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+}
+
+
+img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 200px;
+    display: none;
+}
+
+.image {
+    margin: 0 auto;
+    width: 0%;
+}
+
+.left div {
+    margin: 10px;
+    font-size: 20px;
+}
+
+.right {
+    width: 170px;
+    height: 170px;
+    min-width: 130px;
+    border: 1px solid;
+    border-radius: 50%;
+    line-height: 170px;
+}
+
+.picture {
+    width: 200px;
+    height: 200px;
+    margin: 5%;
+    border-radius: 50%;
+    border: 1px solid;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.picture:hover {
+    background-color: aquamarine;
+}
+
+#text_upload {
+    margin-top: 88px;
+    margin-left: -57px;
+    position: absolute;
+    z-index: 3;
+}
+
+.avatar_under {
+    margin-left: 25px;
+}
+
+.custom-file-input {
+    color: transparent;
+}
+
+.input-file {
+    display: none;
+}
