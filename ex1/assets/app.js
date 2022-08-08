@@ -28,6 +28,15 @@ let success = (id) => {
     id.parentNode.querySelector('.error').innerHTML = '';
     id.style.border = "2px solid";
 }
+
+function checkValidate() {
+    checkName();
+    checkPhone();
+    checkEmail();
+    checkBirthday();
+    checkPassword();
+    checkMatchPassword();
+}
 const notEmpty = (value) => {
     if(value.trim() != ''){
         return true;
@@ -54,14 +63,7 @@ document.addEventListener('click', e => {
         checkName();
     }
 })
-function checkValidate() {
-    checkName();
-    checkBirthday();
-    checkPhone();
-    checkEmail();
-    checkPassword();
-    checkMatchPassword();
-}
+
 const hasError = (id) => {
     if(id.parentElement.querySelector('.error').textContent != ''){
         return true;
@@ -170,10 +172,10 @@ function checkBirthday() {
     let theDay = birthday.value;
     let currentDay = new Date().toISOString().split("T")[0];
     dayArr = theDay.split("-");
-    if (!notEmpty(dayArr[2]) || !notEmpty(dayArr[1])|| !notEmpty(dayArr[0])){
+    if (dayArr[2] == ''|| dayArr[1] == '' || dayArr[0] == ''){
         error(birthday, "Date cannot be blank");
     }
-    else if (currentDay < theDay && notEmpty(dayArr[2]) && notEmpty(dayArr[1])&& notEmpty(dayArr[0])) {
+    else if (currentDay < theDay && dayArr[2] != '' && dayArr[1] != '' && dayArr[0  ] != '') {
         error(birthday, "Date of birth must be less than current date")
         return false;
     }
@@ -188,7 +190,7 @@ function checkPassword() {
     let thePassword = password.value;
     let patt = new RegExp("^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])[a-zA-Z0-9@#$%^&+=]*$");
     let regExp = /[a-zA-Z]/;
-    if (thePassword === '') {
+    if (!notEmpty(thePassword)) {
         error(password, "Password cannot be blank");
     }
     else if (patt.test(thePassword) && regExp.test(thePassword[0]) && minMaxLength(thePassword,8,31)) {
@@ -214,40 +216,41 @@ function checkMatchPassword() {
         return false;
     }
 }
-
+let srcImg = '';
 let loadFile = function (event) {
     let avatarUpload = query('.avatar_upload');
     avatarUpload.src = URL.createObjectURL(event.target.files[0]);
-    dataImg.src = URL.createObjectURL(event.target.files[0]);
+    srcImg = URL.createObjectURL(event.target.files[0]);
     avatarUpload.classList.add('show');
     query('.text_upload').classList.remove('show');
     query('.text_upload').classList.add('hidden');
-    avatarUpload.onload = function () {
-        URL.revokeObjectURL(avatarUpload.src)
-        URL.revokeObjectURL(dataImg.src) // free memory
-    }
 };
 
 query(".image").addEventListener('click', function () {
     id("file-input").click();
 }, false);
 
+const render = () => {
+    dataName.innerHTML = username.value; 
+    dataBirthday.innerHTML = formatDate(birthday.value);
+    dataEmail.innerHTML = email.value;
+    dataPhone.innerHTML = formatPhoneNumber(phone.value);
+    dataImg.src = `${srcImg}`;
+    dataImg.classList.add('show');
+    query('.text_avatar_under').classList.add('hidden');
+}
 
 //click add
 btnAdd.addEventListener('click', (e) => {
     e.preventDefault();
     checkValidate();
-    dataName.innerHTML += username.value;
-    dataBirthday.innerHTML += formatDate(birthday.value);
-    dataEmail.innerHTML += email.value;
-    dataPhone.innerHTML += formatPhoneNumber(phone.value);
-    dataImg.classList.add('show');
-    query('.text_avatar_under').classList.add('hidden');
+    render();
 });
 //add by key shift
 document.addEventListener('keydown', function (e) {
     if (e.keyCode == '16') {
         checkValidate();
+        render();
     }
 });
 //click reset
