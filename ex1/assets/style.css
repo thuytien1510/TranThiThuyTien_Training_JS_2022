@@ -11,14 +11,16 @@ body {
 .form-item {
     display: flex;
     justify-content: center;
+    gap: 30px;
 }
 
 .form-item input {
     min-width: 300px;
     margin: 5px 0;
     border-radius: 5px;
-    width: 70%;
-    padding: 10px 10px;
+    width: 100%;
+    padding: 10px 0;
+    padding-left: 10px;
     font-size: large;
 }
 
@@ -34,13 +36,18 @@ body {
 .error {
     font-size: 14px;
     color: red;
-    text-align: right;
+    text-align: left;
     margin-bottom: 10px;
 }
 
 .form-item label {
-    min-width: 250px;
+    /* min-width: 250px; */
     margin: 15px auto;
+    width: 20%;
+}
+
+.form-item .input-item {
+    width: 80%;
 }
 
 .btn-submit {
@@ -121,14 +128,14 @@ img {
     background-color: aquamarine;
 }
 
-#text_upload {
+.text_upload {
     margin-top: 88px;
     margin-left: -57px;
     position: absolute;
     z-index: 3;
 }
 
-.avatar_under {
+.text_avatar_under {
     margin-left: 25px;
 }
 
@@ -136,6 +143,9 @@ img {
     color: transparent;
 }
 
-.input-file {
+.hidden {
     display: none;
+}
+.show {
+    display: block;
 }
