@@ -9,6 +9,7 @@ let username = id("name"),
     phone = id("phone"),
     birthday = id("birthday"),
     confirmPassword = id("confirm"),
+    img = id('file-input'),
     errorMsg = classes("error"),
     form = id("form"),
     btnAdd = id("btn-add"),
@@ -25,7 +26,7 @@ let error = (id, message) => {
     id.style.border = "2px solid red";
 };
 let success = (id) => {
-    id.parentNode.querySelector('.error').innerHTML = '';
+    id.parentElement.querySelector('.error').innerHTML = '';
     id.style.border = "2px solid";
 }
 
@@ -38,7 +39,7 @@ function checkValidate() {
     checkMatchPassword();
 }
 const notEmpty = (value) => {
-    if(value.trim() != ''){
+    if (value.trim() != '') {
         return true;
     }
     else return false
@@ -52,6 +53,7 @@ document.addEventListener('click', e => {
     }
     if (notEmpty(email.value)) {
         checkEmail();
+        checkName();
     }
     if (notEmpty(phone.value)) {
         checkPhone();
@@ -65,7 +67,7 @@ document.addEventListener('click', e => {
 })
 
 const hasError = (id) => {
-    if(id.parentElement.querySelector('.error').textContent != ''){
+    if (id.parentElement.querySelector('.error').textContent != '') {
         return true;
     }
     else return false;
@@ -79,7 +81,6 @@ username.addEventListener('keyup', e => {
 email.addEventListener('keyup', e => {
     if (hasError(email)) {
         checkEmail();
-        checkName();
     }
 })
 phone.addEventListener('keyup', e => {
@@ -102,7 +103,17 @@ confirmPassword.addEventListener('keyup', e => {
         checkMatchPassword();
     }
 })
-
+//get Error
+let count = 0;
+function getError() {
+    for(let key of document.querySelectorAll('.input-item')){
+        if(notEmpty(key.querySelector('input').value) && !hasError(key.querySelector('input'))) {
+            count = 0;
+        }
+        else count++;
+    }
+    return count;
+}
 //format
 function formatPhoneNumber(thePhone) {
     return `${thePhone.substr(0, 3)}-${thePhone.substr(3, 3)}-${thePhone.substr(6, 4)}`;
@@ -114,7 +125,7 @@ function formatDate(theDay) {
 }
 //checkLength
 const minMaxLength = (length, min, max) => {
-    if(length < min || length > max){
+    if (length < min || length > max) {
         return false;
     }
     else return true;
@@ -125,7 +136,7 @@ function checkName() {
     if (!notEmpty(theName)) {
         error(username, "Username cannot be blank");
     }
-    else if (notEmpty(theName) && minMaxLength(theName.length,3,50)) {
+    else if (notEmpty(theName) && minMaxLength(theName.length, 3, 50)) {
         success(username);
         return true;
     }
@@ -142,11 +153,11 @@ function checkEmail() {
     if (!notEmpty(theEmail)) {
         error(email, "Email cannot be blank");
     }
-    else if (filter.test(theEmail) && minMaxLength(theEmail.length,3,320)) {
+    else if (filter.test(theEmail) && minMaxLength(theEmail.length, 3, 320)) {
         success(email);
         return true;
     } else {
-        error(email,"Incorrect email format");
+        error(email, "Incorrect email format");
         return false;
     }
 }
@@ -172,10 +183,10 @@ function checkBirthday() {
     let theDay = birthday.value;
     let currentDay = new Date().toISOString().split("T")[0];
     dayArr = theDay.split("-");
-    if (dayArr[2] == ''|| dayArr[1] == '' || dayArr[0] == ''){
+    if (dayArr[2] == '' || dayArr[1] == '' || dayArr[0] == '') {
         error(birthday, "Date cannot be blank");
     }
-    else if (currentDay < theDay && dayArr[2] != '' && dayArr[1] != '' && dayArr[0  ] != '') {
+    else if (currentDay < theDay && dayArr[2] != '' && dayArr[1] != '' && dayArr[0] != '') {
         error(birthday, "Date of birth must be less than current date")
         return false;
     }
@@ -193,7 +204,7 @@ function checkPassword() {
     if (!notEmpty(thePassword)) {
         error(password, "Password cannot be blank");
     }
-    else if (patt.test(thePassword) && regExp.test(thePassword[0]) && minMaxLength(thePassword,8,31)) {
+    else if (patt.test(thePassword) && regExp.test(thePassword[0]) && minMaxLength(thePassword, 8, 31)) {
         success(password)
         return true;
     }
@@ -212,8 +223,24 @@ function checkMatchPassword() {
         return true;
     }
     if (theConfirmPassword != thePassword) {
-        error(confirmPassword,  "Password not match");
+        error(confirmPassword, "Password not match");
         return false;
+    }
+}
+//check img 
+function checkImg() {
+    let extend = img.value.split('.')[1];
+    let rightFile = ['jpeg', 'png', 'gif', 'bmp', 'tiff', 'jpg', 'svg', ''];
+    rightFile.forEach(element => {
+        rightFile.push(element.toUpperCase());
+    });
+    if (!rightFile.includes(extend)) {
+        error(img, "Please import image file");
+        return false;
+    }
+    else {
+        success(img);
+        return true;
     }
 }
 let srcImg = '';
@@ -222,6 +249,10 @@ let loadFile = function (event) {
     avatarUpload.src = URL.createObjectURL(event.target.files[0]);
     srcImg = URL.createObjectURL(event.target.files[0]);
     avatarUpload.classList.add('show');
+    avatarUpload.onload = function () {
+        URL.revokeObjectURL(avatarUpload.src)
+    }
+    checkImg();
     query('.text_upload').classList.remove('show');
     query('.text_upload').classList.add('hidden');
 };
@@ -231,26 +262,34 @@ query(".image").addEventListener('click', function () {
 }, false);
 
 const render = () => {
-    dataName.innerHTML = username.value; 
+    dataName.innerHTML = username.value;
     dataBirthday.innerHTML = formatDate(birthday.value);
     dataEmail.innerHTML = email.value;
     dataPhone.innerHTML = formatPhoneNumber(phone.value);
-    dataImg.src = `${srcImg}`;
-    dataImg.classList.add('show');
-    query('.text_avatar_under').classList.add('hidden');
+    if (srcImg != '') {
+        dataImg.src = `${srcImg}`;
+        dataImg.classList.add('show');
+        query('.text_avatar_under').classList.add('hidden');
+    }
 }
 
 //click add
 btnAdd.addEventListener('click', (e) => {
     e.preventDefault();
     checkValidate();
-    render();
+    getError();
+    if (count == 0) {
+        render();
+    }
 });
 //add by key shift
 document.addEventListener('keydown', function (e) {
     if (e.keyCode == '16') {
         checkValidate();
-        render();
+        getError();
+        if (count == 0) {
+            render();
+        }
     }
 });
 //click reset

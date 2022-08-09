@@ -34,7 +34,7 @@
                 <div class="form-item">
                     <label for="phone">Phone</label>
                     <div class="input-item">
-                        <input type="number" id="phone" onkeydown="javascript: return event.keyCode == 69 ? false : true" required>
+                        <input type="number" id="phone" min="0" onkeydown="javascript: return event.keyCode == 69 ? false : true" required>
                         <div class="error"></div>
                     </div>
                 </div>
@@ -64,16 +64,17 @@
                 <div class="picture">
                     <img src="" alt="Avartar upload" class="avatar_upload">
                     <span class="text_upload">Avartar upload</span>
+                    <div class="error error-img"></div>
                 </div>
                 <input type="file" name="file" id="file-input" class="custom-file-input hidden" accept="image/*"
                     onchange="loadFile(event)">
+                
             </div>
             <div class="btn-submit">
                 <button class="btn-add" id="btn-add">Add</button>
                 <button class="btn-reset" id="btn-reset">Reset</button>
             </div>
         </form>
-
         <div class="data">
             <div class="content">
                 <div class="left">
