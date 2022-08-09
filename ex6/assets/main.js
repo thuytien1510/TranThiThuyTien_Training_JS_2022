@@ -3,16 +3,18 @@ let classes = (classes) => document.getElementsByClassName(classes);
 
 id('btn-add').addEventListener('click', e => {
     id('list').innerHTML += `
+    <tr>
     <td><input type="checkbox" name="" id=""></td>
     <td class="field-item"></td>
     <td class="field-item"></td>
     <td class="field-item"></td>
     <td><a href="#" class="delete" onclick="deleteRow(this)">DELETE</a></td>
+    </tr>
     `
 })
 
 function deleteRow(r) {
-    let i = r.parentNode.parentNode.rowIndex;
+    let i = r.parentNode.parentNode.rowIndex-1;
     document.getElementById("list").deleteRow(i);
 }
 
