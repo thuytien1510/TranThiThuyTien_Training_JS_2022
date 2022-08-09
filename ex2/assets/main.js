@@ -2,17 +2,53 @@ let list = document.getElementById('list');
 let form = document.getElementById('form');
 let formItem = document.getElementsByTagName('p');
 
-const arrOption = ['1', '2', '3', '4', '5', '6', 'Chẵn', 'Lẻ', 'Reset'];
-const arrForm = ['Hà Nội', 'Sài Gòn','Đà Nẵng', 'Huế', 'Hải Phòng', 'Nha Trang'];
+const option = [
+    {
+        value: "1",
+        text: "1"
+    },
+    {
+        value: "2",
+        text: "2"
+    },
+    {
+        value: "3",
+        text: "3"
+    },
+    {
+        value: "4",
+        text: "4"
+    },
+    {
+        value: "5",
+        text: "5"
+    },
+    {
+        value: "6",
+        text: "6"
+    },
+    {
+        value: "even",
+        text: "Chẵn"
+    },
+    {
+        value: "odd",
+        text: "Lẻ"
+    },
+    {
+        value: "reset",
+        text: "Reset"
+    }
+]
+const arrForm = ['Hà Nội', 'Sài Gòn', 'Đà Nẵng', 'Huế', 'Hải Phòng', 'Nha Trang'];
 
-list.innerHTML = arrOption.map((e, i) =>{
-    i++;
+list.innerHTML = option.map(({value, text}) => {
     return `
-        <option value="${i}">${e}</option>
+        <option value="${value}">${text}</option>
     `
 })
 
-form.innerHTML = arrForm.map((e,i) => {
+form.innerHTML = arrForm.map((e, i) => {
     i++;
     return `
     <p class="form-item">${i}. ${e}</p>
@@ -23,13 +59,13 @@ list.addEventListener('click', e => {
     e.preventDefault;
     for (let i = 0; i < formItem.length; i++) {
         formItem[i].classList.remove('highlight');
-        if (list.value == '7' && i % 2 == 0) {
+        if (list.value == 'even' && i % 2 != 0) {
             formItem[i].classList.add('highlight');
         }
-        if (list.value == '8' && i % 2 != 0) {
+        if (list.value == 'odd' && i % 2 == 0) {
             formItem[i].classList.add('highlight');
         }
-        if (list.value == '9') {
+        if (list.value == 'reset') {
             formItem[i].classList.remove('highlight');
         }
     }
