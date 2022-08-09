@@ -103,17 +103,7 @@ confirmPassword.addEventListener('keyup', e => {
         checkMatchPassword();
     }
 })
-//get Error
-let count = 0;
-function getError() {
-    for(let key of document.querySelectorAll('.input-item')){
-        if(notEmpty(key.querySelector('input').value) && !hasError(key.querySelector('input'))) {
-            count = 0;
-        }
-        else count++;
-    }
-    return count;
-}
+
 //format
 function formatPhoneNumber(thePhone) {
     return `${thePhone.substr(0, 3)}-${thePhone.substr(3, 3)}-${thePhone.substr(6, 4)}`;
@@ -272,13 +262,19 @@ const render = () => {
         query('.text_avatar_under').classList.add('hidden');
     }
 }
-
+let checkRender = () => {
+    for(let key of document.querySelectorAll('.error')){
+        if(key.textContent != ''){
+            return false;
+        }
+        else return true;
+    }
+}
 //click add
 btnAdd.addEventListener('click', (e) => {
     e.preventDefault();
     checkValidate();
-    getError();
-    if (count == 0) {
+    if (checkRender()) {
         render();
     }
 });
@@ -286,8 +282,7 @@ btnAdd.addEventListener('click', (e) => {
 document.addEventListener('keydown', function (e) {
     if (e.keyCode == '16') {
         checkValidate();
-        getError();
-        if (count == 0) {
+        if (checkRender()) {
             render();
         }
     }
