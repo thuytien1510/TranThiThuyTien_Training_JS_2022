@@ -14,7 +14,7 @@
     border: 2px solid;
     margin: 0 auto;
     width: 70%;
-    margin-top: 5%;
+    margin-top: 20px;
 }
 
 .chat-item {
@@ -70,7 +70,7 @@
     margin-bottom: 20px;
 }
 
-.text-editor .message {
+.text-editor input{
     width: 100%;
     border: 1px solid;
     height: 50px;

@@ -27,10 +27,19 @@ function countDown(i, callback) {
 var countDownTime = localStorage.getItem(COUNTER_KEY) || 10;
 countDown(countDownTime, function () {
   id('answer').style.display = 'block';
-  id('mark').innerHTML = `${mark}`;
+  let yourMark = 0;
+  for (let i = 0; i < allClass('.option-question').length; i++) {
+    let inputSelect = document.querySelector(`input[name= 'question${i}']:checked`)
+    let yourAnswer = (inputSelect || {}).value;
+    let right = data[i].correctAnswer;
+    if(yourAnswer == right){
+      yourMark += 10;
+    }
+  }
+  id('mark').innerHTML = `${yourMark}`;
   id('mark').style.color = 'red';
+  localStorage.clear();
 });
-
 
 const data = [
   {
@@ -73,10 +82,9 @@ const renderData = data.map(
     question,
     answers: { a, b, c, d }
   }, index) => {
-    index++
     html = `
     <h1 class="number-question">
-    Question ${index} :
+    Question ${index + 1} :
 </h1>
 <h4 class="question">
     ${question}
@@ -103,26 +111,25 @@ const renderData = data.map(
     return html;
   }
 )
+
 id('quizz').innerHTML = renderData.join("");
-let rightAnswer = [];
+
 const renderMark = data.map(
   ({
     correctAnswer
   }, index) => {
     index++;
-    rightAnswer.push(correctAnswer);
     html = `
       <div><h2>${index} . ${correctAnswer}</h2></div>
         `;
     return html;
   }
 )
-console.log(rightAnswer)
 
 id('correctAnswer').innerHTML = renderMark.join("");
 
 document.addEventListener('click', e => {
-  for (let i = 0; i <= allClass('.option-question').length; i++) {
+  for (let i = 0; i < allClass('.option-question').length; i++) {
     let answers = allClass(`input[name='question${i}']`);
     for (let key in answers) {
       if (answers[key].checked) {
@@ -132,20 +139,6 @@ document.addEventListener('click', e => {
   }
 })
 
-let yourAnswer = [];
-for (let i = 1; i <= allClass('.option-question').length; i++) {
-  id(localStorage.getItem(`question${i}`)).setAttribute("checked", "checked");
-  yourAnswer.push(id(localStorage.getItem(`question${i}`)).value)
-}
-console.log(yourAnswer)
-let mark = checkMark(rightAnswer, yourAnswer);
-function checkMark(a, b) {
-  let total = 0;
-  for (let i = 0; i < a.length; i++) {
-    if (a[i] == b[i]) {
-      total += 10;
-    }
-    total;
-  }
-  return total;
+for (let i = 0; i < allClass('.option-question').length; i++) {
+  id(localStorage.getItem(`question${i}`)).checked = true;
 }

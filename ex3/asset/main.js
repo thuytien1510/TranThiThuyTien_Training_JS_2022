@@ -38,46 +38,30 @@ italicB.addEventListener('click', e => {
     messageB.classList.toggle('italic');
 })
 
-const styleMessM = (mess, chatM) => {
-    if (mess.value != '') {
-        let pM = document.createElement('p');
-        let message1 = document.createTextNode(`${mess.value}`);
-        chatM.append(pM);
-        pM.append(message1);
-        pM.classList.add('fromM');
-        let class1 = mess.classList.value.split(' ')[1];
-        let class2 = mess.classList.value.split(' ')[2];
-        pM.classList.add(class1);
-        pM.classList.add(class2);
-    }
-}
-const styleMessY = (mess, chatY, image) => {
-    if (mess.value != '') {
-        let pY = document.createElement('p');
-        let div = document.createElement('div');
-        let img = document.createElement('img');
-        let message2 = document.createTextNode(`${mess.value}`);
-        chatY.append(div);
-        pY.append(message2);
-        pY.classList.add('fromY');
+const styleMess = (mess, chat, classInput,classDiv, imgAvatar) => {
+    if (mess.value == '') return;
+    let p = document.createElement('p');
+    let div = document.createElement('div');
+    let img = document.createElement('img');
+    chat.append(div);
+    div.className = classDiv;
+    p.innerHTML = `${mess.value }`;
+    if(classDiv != ''){
         div.append(img);
-        div.append(pY);
-        img.src = image;
-        div.classList.add('chatY');
-        let class1 = mess.classList.value.split(' ')[1];
-        let class2 = mess.classList.value.split(' ')[2];
-        pY.classList.add(class1);
-        pY.classList.add(class2);
+        img.src = imgAvatar;
     }
+    div.append(p);
+    p.className = classInput + ' '+ mess.className;
 }
+
 sendA.addEventListener('click', e => {
-    styleMessM(messageA, chatA);
-    styleMessY(messageA, chatB, "./asset/img/a.png");
+    styleMess(messageA, chatA, 'fromM', '');
+    styleMess(messageA, chatB, 'fromY','chatY', "./asset/img/a.png" );
     messageA.value = '';
 })
 sendB.addEventListener('click', e => {
-    styleMessM(messageB, chatB);
-    styleMessY(messageB, chatA, "./asset/img/letter-b.png");
+    styleMess(messageB, chatB, 'fromM','');
+    styleMess(messageB, chatA, 'fromY','chatY',"./asset/img/letter-b.png");
     messageB.value = '';
 })
 document.addEventListener('keydown', e => {

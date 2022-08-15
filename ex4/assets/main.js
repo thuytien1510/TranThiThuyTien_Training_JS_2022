@@ -2,31 +2,27 @@ let id = (id) => document.getElementById(id);
 
 const dots = document.querySelectorAll(".dot-container button");
 const images = document.querySelectorAll(".image-container img");
-let i = 0; // current slide
-let j = 6; // total slides
-function next(){
-    id("content" + (i+1)).classList.remove("active");
-    i = ( j + i + 1) % j;
-    id("content" + (i+1)).classList.add("active");
-    indicator( i+ 1 );
+
+let index = 1;
+showSlides(index);
+
+function plusSlides(n) {
+    showSlides(index += n);
 }
-function prev(){
-    id("content" + (i+1)).classList.remove("active");
-    i = (j + i - 1) % j;
-    id("content" + (i+1)).classList.add("active");
-    indicator(i+1);
+
+function dot(n) {
+    showSlides(index = n);
 }
-function indicator(num){
-    dots.forEach(function(dot){
-        dot.style.backgroundColor = "transparent";
-    });
-    document.querySelector(".dot-container button:nth-child(" + num + ")").style.backgroundColor = "#121313";
-}
-function dot(index){
-    images.forEach(function(image){
-        image.classList.remove("active");
-    });
-    id("content" + index).classList.add("active");
-    i = index - 1;
-    indicator(index);
+function showSlides(n) {
+    let i;
+    if (n > images.length) { index = 1 }
+    if (n < 1) { index = images.length }
+    for (i = 0; i < images.length; i++) {
+        images[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace("active", "");
+    }
+    images[index - 1].style.display = "block";
+    dots[index - 1].className += "active";
 }

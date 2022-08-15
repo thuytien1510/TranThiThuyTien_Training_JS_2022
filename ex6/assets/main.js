@@ -22,12 +22,12 @@ id('selectAll').addEventListener('click', e => {
     let checkboxes = document.querySelectorAll('input[type="checkbox"]');
     if (id('selectAll').checked) {
         for (let checkbox in checkboxes) {
-            checkboxes[checkbox].checked = true;
+            checkboxes[checkbox].setAttribute('checked','checked');
         }
     }
     else {
         for (let checkbox in checkboxes) {
-            checkboxes[checkbox].checked = false;
+            checkboxes[checkbox].removeAttribute('checked');
         }
     }
 })
@@ -42,7 +42,7 @@ id('btn-delete').addEventListener('click', e => {
     }
 })
 
-id('table').addEventListener('dblclick', e => {
+id('table').addEventListener('click', e => {
     if (e.target.classList.contains('field-item')) {
         e.target.setAttribute('contenteditable', true)
     }

@@ -23,6 +23,7 @@ birthday.max = new Date().toISOString().split("T")[0];
 //check data
 let error = (id, message) => {
     id.parentElement.querySelector('.error').innerHTML = message;
+    id.classList.add('is-invalid');
     id.style.border = "2px solid red";
 };
 let success = (id) => {
@@ -263,12 +264,7 @@ const render = () => {
     }
 }
 let checkRender = () => {
-    for(let key of document.querySelectorAll('.error')){
-        if(key.textContent != ''){
-            return false;
-        }
-        else return true;
-    }
+    return document.querySelectorAll('.is-invalid').length == 0 ? true : false 
 }
 //click add
 btnAdd.addEventListener('click', (e) => {
@@ -279,7 +275,7 @@ btnAdd.addEventListener('click', (e) => {
     }
 });
 //add by key shift
-document.addEventListener('keydown', function (e) {
+document.addEventListener('keyup', function (e) {
     if (e.keyCode == '16') {
         checkValidate();
         if (checkRender()) {

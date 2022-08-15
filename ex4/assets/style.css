@@ -7,7 +7,6 @@
 }
 
 body{
-
     background: #bbd4e3;
 }
 
@@ -33,7 +32,9 @@ img{
 
 .active{
     display: block;
+    background-color: #0f1010 !important;
 }
+
 .dot-container{
     margin: 3% auto 0 auto;
     display: flex;
@@ -54,9 +55,6 @@ button{
     background-color: transparent;
 }
 
-.dot-container button:nth-child(1){
-    background-color: #121313;
-}
 #prev,#next{
     position: absolute;
     color: rgb(251, 249, 249);
