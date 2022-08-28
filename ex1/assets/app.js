@@ -28,6 +28,7 @@ let error = (id, message) => {
 };
 let success = (id) => {
     id.parentElement.querySelector('.error').innerHTML = '';
+    id.classList.remove('is-invalid');
     id.style.border = "2px solid";
 }
 
@@ -264,7 +265,7 @@ const render = () => {
     }
 }
 let checkRender = () => {
-    return document.querySelectorAll('.is-invalid').length == 0 ? true : false 
+    return document.querySelectorAll('.is-invalid').length == 0 ? true : false
 }
 //click add
 btnAdd.addEventListener('click', (e) => {
