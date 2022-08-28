@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex 1</title>
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="data-input">
+        <form action="" id="form">
+            <div class="container">
+                <div class="form-item">
+                    <label for="name">Full name</label>
+                    <div class="input-item">
+                        <input type="text" id="name" pattern="[A-Za-z]" title="Please enter the name in letters"
+                            required>
+                        <div class="error"></div>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <label for="email">Email</label>
+                    <div class="input-item">
+                        <input type="email" id="email" required>
+                        <div class="error"></div>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <label for="phone">Phone</label>
+                    <div class="input-item">
+                        <input type="number" id="phone" min="0" onkeydown="javascript: return event.keyCode == 69 ? false : true" required>
+                        <div class="error"></div>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <label for="birthday">Birthday</label>
+                    <div class="input-item">
+                        <input type="date" id="birthday" required>
+                        <div class="error"></div>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <label for="password">Password</label>
+                    <div class="input-item">
+                        <input type="password" id="password" required>
+                        <div class="error"></div>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <label for="confirm">Confirm password</label>
+                    <div class="input-item">
+                        <input type="password" id="confirm" required>
+                        <div class="error"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="image input-btn" id="file-upload">
+                <div class="picture">
+                    <img src="" alt="Avartar upload" class="avatar_upload">
+                    <span class="text_upload">Avartar upload</span>
+                    <div class="error error-img"></div>
+                </div>
+                <input type="file" name="file" id="file-input" class="custom-file-input hidden" accept="image/*"
+                    onchange="loadFile(event)">
+                
+            </div>
+            <div class="btn-submit">
+                <button class="btn-add" id="btn-add">Add</button>
+                <button class="btn-reset" id="btn-reset">Reset</button>
+            </div>
+        </form>
+        <div class="data">
+            <div class="content">
+                <div class="left">
+                    <div>Full Name: <span class="fullName"></span></div>
+                    <div>Email: <span class="email"></span></div>
+                    <div>Phone: <span class="phone"></span></div>
+                    <div>Birthday: <span class="birthday"></span></div>
+                </div>
+                <div class="right">
+                    <img src="" class="avatar_preview">
+                    <div class="text_avatar_under">
+                        Avartar preview
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="./assets/app.js"></script>
+
+</html>
